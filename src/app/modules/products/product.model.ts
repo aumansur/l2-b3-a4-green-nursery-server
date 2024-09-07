@@ -21,6 +21,7 @@ const ProductSchema = new Schema<TProduct>({
   rating: {
     type: Number,
     required: true,
+    max: 5,
     default: 0,
   },
 

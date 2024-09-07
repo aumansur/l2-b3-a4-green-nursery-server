@@ -9,7 +9,12 @@ const app = express();
 
 app.use(express());
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({
+    origin: "https://green-nursery-client-l2b3a4.vercel.app",
+    credentials: true,
+  })
+);
 
 //! install and setup server
 app.use("/api/", router);

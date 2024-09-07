@@ -54,9 +54,37 @@ const getAllProducts: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
+// get single product
+
+const getSingleProduct: RequestHandler = catchAsync(async (req, res) => {
+  const result = await NurseryServices.getProductById(req.params.id);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "Nursery single  Product retrieved successfully",
+    data: result,
+  });
+});
+
+// get getProductCount response
+
+const getProductCount: RequestHandler = catchAsync(async (req, res) => {
+  const result = await NurseryServices.getProductCount();
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "Nursery Products count retrieved successfully",
+    data: result,
+  });
+});
+
 export const NurseryControllers = {
   createProduct,
   getAllProducts,
   updateProduct,
   deleteProduct,
+  getSingleProduct,
+  getProductCount,
 };

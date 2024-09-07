@@ -22,10 +22,25 @@ const deleteProductFromDB = async (id: string) => {
 const getAllProductFromDB = async (query: Record<string, unknown>) => {
   const productSearchableField = ["title", "category", "description"];
 
-  const productQuery = new QueryBuilder(Product.find(), query).search(
-    productSearchableField
-  );
+  const productQuery = new QueryBuilder(Product.find(), query)
+    .paginate()
+    .search(productSearchableField)
+    .sort();
+
   const result = await productQuery.modelQuery;
+  return result;
+};
+
+// get single product
+
+const getProductById = async (id: string) => {
+  const result = await Product.findById(id);
+  return result;
+};
+// get product by  estimatedDocumentCount method
+
+const getProductCount = async () => {
+  const result = await Product.estimatedDocumentCount();
   return result;
 };
 
@@ -34,4 +49,6 @@ export const NurseryServices = {
   getAllProductFromDB,
   updateProductIntoDB,
   deleteProductFromDB,
+  getProductById,
+  getProductCount,
 };
