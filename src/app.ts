@@ -12,6 +12,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: "https://green-nursery-client-l2b3a4.vercel.app",
+    // origin: "http://localhost:5173",
+    // local host origin
+    // origin: "http://localhost:3000",
+
     credentials: true,
   })
 );
